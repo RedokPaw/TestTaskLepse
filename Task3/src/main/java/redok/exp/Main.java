@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class Main {
 
-    private static String variableNameTest = "camelCase";
+    public static String variableNameTest = "camelCase";
 
     public static final String CAMEL_CASE_PATTERN = "^[a-z]+[A-Za-z]*";
     public static final String SNAKE_CASE_PATTERN = "^[a-z]+(?:_[a-z]+)*";
