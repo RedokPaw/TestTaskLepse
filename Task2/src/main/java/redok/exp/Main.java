@@ -6,7 +6,9 @@ import java.util.List;
 
 public class Main {
 
-    public static int[][] matrix = {{3, 6, 9, 8, 2}, {2, 4, 3, 5, 9}, {4, 5, 8, 9, 5}, {4, 5, 7, 9, 6}, {3, 9, 8, 4, 7}};
+    public static int[][] matrix = {{4, 1, 8, 9, 2},
+                                    {4, 4, 7, 9, 6},
+                                    {3, 1, 8, 4, 7}};
 
     public static void main(String[] args) {
         System.out.println(Arrays.deepToString(matrix));
@@ -22,7 +24,7 @@ public class Main {
         for (int i = 0; i < rows; i++) {
             int minNumInRow = matrix[i][0];
             List<Integer> minIndexes = new ArrayList<>();
-
+            //ищем минимумы и запоминаем индексы
             for (int j = 0; j < cols; j++) {
                 if (matrix[i][j] < minNumInRow) {
                     minIndexes.clear();
@@ -32,6 +34,10 @@ public class Main {
                     minIndexes.add(j);
                 }
             }
+            /*
+            проходимся по столбцу с мин. индексом, если есть другие элементы больше - выходим из цикла,
+            т-к нужен наибольший элемент в столбце, иначе выводим эту точку
+            */
             boolean isLoopFinished = true;
             for (Integer minIndex : minIndexes) {
                 for (int j = 0; j < rows; j++) {
