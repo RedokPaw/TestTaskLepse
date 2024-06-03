@@ -66,26 +66,4 @@ public class Main {
         }
         return edges;
     }
-
-/*           if (equalPairEdgesCount == 3) {
-            if (((edges[0][0] == edges[2][0] || edges[0][0] == edges[2][1]) ||
-                    (edges[0][0] == edges[4][0] || edges[0][0] == edges[4][1])) &&
-                    ((edges[0][1] == edges[2][0] || edges[0][1] == edges[2][1]) ||
-                    (edges[0][1] == edges[4][0] || edges[0][1] == edges[4][1])) &&
-                    ((edges[2][0] == edges[0][0] || edges[2][0] == edges[0][1]) ||
-                    (edges[2][0] == edges[4][0] || edges[2][0] == edges[4][1])) &&
-                    ((edges[2][1] == edges[0][0] || edges[2][1] == edges[0][1]) ||
-                    (edges[2][1] == edges[4][0] || edges [2][1] == edges[4][1])) &&
-                    ((edges[4][0] == edges[0][0] || edges[4][0] == edges[0][1]) ||
-                    (edges[4][0]== edges[2][0] || edges[4][0] == edges[2][1])) &&
-                    ((edges[4][1] == edges[0][0] || edges[4][1] == edges[0][1]) ||
-                    (edges[4][1] == edges[2][0] || edges[4][1] == edges[2][1]))
-
-            ) {
-                System.out.println("Возможно");
-            }
-            else {
-                System.out.println("Невозможно");
-            }
-        }*/
 }
