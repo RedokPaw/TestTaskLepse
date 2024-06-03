@@ -1,8 +1,6 @@
 package redok.exp;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -12,6 +10,8 @@ public class Main {
 
     public static void main(String[] args) {
         int[][] edges = readSidesFromFile();
+
+        Arrays.sort(edges, Comparator.comparingInt(a -> a[0]));
         Arrays.sort(edges, Comparator.comparingInt(a -> a[1]));
         System.out.println(Arrays.deepToString(edges));
 
@@ -24,23 +24,37 @@ public class Main {
         }
 
         if (equalPairEdgesCount == 3 && isPossibleToCombineSides(edges)) {
-            System.out.println("Возможно");
+            writeToFile("POSSIBLE");
+            System.out.println("POSSIBLE");
         } else {
-            System.out.println("Невозможно");
+            writeToFile("IMPOSSIBLE");
+            System.out.println("IMPOSSIBLE");
         }
     }
 
     //{2}
     public static boolean isPossibleToCombineSides(int[][] edges) {
         HashMap<Integer, Integer> numberCount = new HashMap<>();
+        //счетчик для квадратных сторон
+        int squaresSidesCount = 0;
+
         //Ищем повторения чисел в матрице и складывает в мапу
         for (int i = 0; i < 6; i += 2) {
             numberCount.put(edges[i][0], numberCount.getOrDefault(edges[i][0], 0) + 1);
             numberCount.put(edges[i][1], numberCount.getOrDefault(edges[i][1], 0) + 1);
+            if (edges[i][0] == edges[i][1]) {
+                squaresSidesCount++;
+            }
         }
-        //Сравнение количества "измерений", а так же исключение для куба
-        return (numberCount.size() == 3 && numberCount.values().stream().allMatch(number -> number == 2)) ||
-                numberCount.size() == 1 && numberCount.values().stream().allMatch(number -> number == 6);
+        int numCombinations = numberCount.size();
+        System.out.println(numberCount);
+        return switch (numCombinations) {
+            case 1 -> true;
+            case 2 -> numberCount.values().stream().anyMatch(number -> number == 2)
+                    && numberCount.values().stream().anyMatch(number -> number == 4) && squaresSidesCount == 1;
+            case 3 -> numberCount.values().stream().allMatch(number -> number == 2) && squaresSidesCount == 0;
+            default -> false;
+        };
     }
 
     public static int[][] readSidesFromFile() {
@@ -65,5 +79,11 @@ public class Main {
             e.printStackTrace();
         }
         return edges;
+    }
+
+    public static void writeToFile(String text) {
+        try (Writer fileWriter = new FileWriter("OUTPUT.TXT")) {
+            fileWriter.write(text);
+        } catch (IOException e) {}
     }
 }

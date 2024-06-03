@@ -38,8 +38,8 @@ public class Main {
             проходимся по столбцу с мин. индексом, если есть другие элементы больше - выходим из цикла,
             т-к нужен наибольший элемент в столбце, иначе выводим эту точку
             */
-            boolean isLoopFinished = true;
             for (Integer minIndex : minIndexes) {
+                boolean isLoopFinished = true;
                 for (int j = 0; j < rows; j++) {
                     if (minNumInRow < matrix[j][minIndex]) {
                         isLoopFinished = false;
